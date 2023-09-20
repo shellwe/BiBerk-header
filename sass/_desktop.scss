@@ -1,0 +1,175 @@
+@media screen and (min-width: 800px) {
+    .nav-toggle {
+        display: none;
+    }
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+        padding: 0 10px;
+
+        .primary-menu {
+
+            // Top Menu
+            &>ul {
+                list-style-type: none;
+                display: flex;
+                flex-flow: row nowrap;
+                //gap: .5vw;
+
+                // Top Menu item
+                &>li {
+                    text-transform: uppercase;
+                    //line-height: 1;
+                    background-color: #fff;
+                    border: none;
+                    font-family: NexaHeavy, Arial, sans-serif;
+                    font-size: 13px;
+                    place-items: center;
+                    display: grid;
+                    padding: 0 5px;
+
+                    &:hover,
+                    &:active,
+                    &.selected-menu {
+                        background-color: rgb(31, 72, 106);
+
+                        &>a {
+                            color: #fff;
+                        }
+                    }
+
+                    &.selected-menu {
+
+                        // submenu layer 1
+                        .submenu {
+                            background-color: #edecec;
+                            display: flex;
+                            flex-flow: row nowrap;
+                            justify-content: center;
+                            right: 5vw;
+                            left: 5vw;
+                            position: fixed;
+                            top: 60px;
+                            white-space: normal;
+                            margin: auto;
+                            max-width: 1600px;
+
+                            &>li {
+                                display: block;
+                            }
+
+                            &.image-panels {
+                                display: flex;
+                                flex-flow: row wrap;
+                                gap: 15px;
+                                padding: 25px;
+                                justify-content: flex-start;
+
+                                li:not(.close-submenu) {
+                                    background-size: contain;
+
+                                    a {
+                                        display: flex;
+                                        flex-direction: column;
+                                        justify-content: flex-end;
+                                        align-items: flex-start;
+
+                                        width: 200px;
+                                        height: 150px;
+                                        font-family: NexaRegular, Arial, sans-serif;
+                                        font-size: 16px;
+                                        font-weight: 400;
+                                        letter-spacing: 0.3px;
+                                        line-height: 25.6px;
+                                        color: #fff;
+                                        padding: 0;
+                                        background: linear-gradient(to bottom, transparent 50%, #1F486A 50%);
+
+
+                                        span {
+                                            //background-color: #1F486A;
+                                            display: block;
+                                            text-align: left;
+                                            height: 60px;
+                                            display: block;
+                                            padding: 5px 20px;
+                                        }
+                                    }
+                                }
+
+                            }
+
+                            &.large-lists {
+                                display: flex;
+
+                                a {
+                                    display: block;
+                                }
+
+
+
+                                .submenu-category {
+                                    flex: 1;
+                                    border-right: thin #ddd solid;
+
+                                    &>a {
+                                        font-size: 1.25rem;
+                                    }
+
+                                    .column {
+                                        columns: 2;
+                                    }
+
+                                }
+                            }
+
+                            .close-submenu {
+                                position: absolute;
+                                right:0;
+                                top: 5px;
+
+                                a {
+                                    padding: 0;
+                                    width: 100px;
+                                }
+                            }
+                            // .close-submenu {
+                            //     flex-basis: 100%;
+                            //     display: flex;
+                            //     flex-flow: row-reverse nowrap;
+
+                            //     a {
+                            //         padding: 0;
+                            //         width: 100px;
+                            //     }
+                            // }
+                        }
+                    }
+
+                    a {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        width: 100%;
+                        //height: 100%;
+                        padding: 10px 1vw;
+                        color: #000;
+                        text-decoration: none;
+                        /* Remove underline for the link */
+                        /* Background color for the link */
+
+                    }
+                }
+
+                // Submenu
+                // .submenu{
+                //     //display:none;
+                // }
+
+            }
+        }
+    }
+}

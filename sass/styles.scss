@@ -1,0 +1,28 @@
+@import 'normalize';
+.container {
+    display:block;
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.logo {
+    img {
+        width: 100%;
+        height: auto;
+        max-width: 150px;
+    }
+}
+
+ul {
+    padding: 0;
+    li{
+        list-style-type: none;
+    }
+}
+
+.submenu {
+    display: none;
+}
+
+@import 'mobile', 'desktop';
