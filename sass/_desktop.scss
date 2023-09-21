@@ -21,7 +21,7 @@
 
                 // Top Menu item
                 &>li {
-                    text-transform: uppercase;
+                    //text-transform: uppercase;
                     //line-height: 1;
                     background-color: #fff;
                     border: none;
@@ -45,17 +45,19 @@
 
                         // submenu layer 1
                         .submenu {
+                            position: fixed;
+                            left: 50%;
+                            transform: translate(-50%, 0);
+                            max-width: 1080px;
+                            width: 90%;
                             background-color: #edecec;
                             display: flex;
                             flex-flow: row nowrap;
                             justify-content: center;
-                            right: 5vw;
-                            left: 5vw;
-                            position: fixed;
-                            top: 60px;
+                            top: 75px;
                             white-space: normal;
-                            margin: auto;
-                            max-width: 1600px;
+                            border-radius: 5px;
+                            padding: 30px 25px;
 
                             &>li {
                                 display: block;
@@ -65,7 +67,6 @@
                                 display: flex;
                                 flex-flow: row wrap;
                                 gap: 15px;
-                                padding: 25px;
                                 justify-content: flex-start;
 
                                 li:not(.close-submenu) {
@@ -113,8 +114,9 @@
 
                                 .submenu-category {
                                     flex: 1;
-                                    border-right: thin #ddd solid;
-
+                                    &:last-child{
+                                        border-left: thin #ddd solid;
+                                    }
                                     &>a {
                                         font-size: 1.25rem;
                                     }
@@ -129,7 +131,7 @@
                             .close-submenu {
                                 position: absolute;
                                 right:0;
-                                top: 5px;
+                                top: 10px;
 
                                 a {
                                     padding: 0;
