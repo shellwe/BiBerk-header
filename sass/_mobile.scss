@@ -1,10 +1,19 @@
 @media screen and (max-width: 799px) {
+    .display-mobile-only {
+        display: block;
+    }
+
+    .display-desktop-only {
+        display: none;
+    }
+
     .logo {
         img {
             margin: 10px;
         }
     }
 
+    // START Hamburger Menu
     .nav-toggle {
         position: absolute;
         top: 25px;
@@ -14,7 +23,7 @@
         justify-content: space-between;
         height: 22px;
         width: 22px;
-        z-index: 100;
+        z-index: 1100;
 
         .bar {
             height: 3px;
@@ -32,14 +41,14 @@
             transform: rotate(45deg);
             transform-origin: top left;
             width: 28px;
-            background-color: #fff;
+            background-color: var(--primary-color);
         }
 
         .x:nth-of-type(2) {
             transition: all 100ms ease-in-out;
             transform-origin: center;
             width: 0;
-            background-color: #fff;
+            background-color: var(--primary-color);
         }
 
         .x:nth-of-type(3) {
@@ -47,10 +56,12 @@
             transform: rotate(-45deg);
             transform-origin: bottom left;
             width: 28px;
-            background-color: #fff;
+            background-color: var(--primary-color);
         }
 
     }
+
+    // END Hamburger Menu
 
     .primary-menu {
         position: fixed;
@@ -58,80 +69,78 @@
         right: -250px;
         width: 250px;
         height: 100%;
-        background-color: #333;
+        background-color: var(--menu-bg-color);
         overflow-y: auto;
         transition: 0.4s;
         padding-top: 25px;
+        z-index: 1000;
 
         ul {
             list-style: none;
             padding: 0;
-        }
+            li {
+                padding: 15px;
+            }
+            }
 
-        li {
-            padding: 15px;
-        }
 
-        a {
+        a,
+        .non-link {
             text-decoration: none;
-            color: #fff;
+            color: var(--primary-color);
             display: block;
             font-size: 18px;
+            padding-left:15px;
         }
-
-        .selected-menu {
-            .submenu {
-                display: block;
-            }
-        }
-        &.slider{
-            .selected-menu {
-                .submenu {
-                    display: block;
-                    position: absolute;
-                    background-color: #333;
-                    top: 50px;
-                    bottom: 0;
-                    right: 0;
-                    width: 250px;
-                    right: -250px;
-                    transition: 0.4s;
-                }
-            }
-    
-        }
-        .submenu {
-            &>li {
-                background-image: none !important;
-            }
-        }
-
         .has-submenu {
-            .column {
-                display: none;
-            }
-
             &>a {
                 &:after {
                     content: "\203A";
-                    color: white;
+                    color: var(--primary-color);
                     font-size: 25px;
                     padding-left: 5px;
                     font-weight: bold;
                 }
             }
+            .submenu {
+                display: block;
+                position: absolute;
+                background-color: var(--menu-bg-color);
+                top: 50px;
+                bottom: 0;
+                width: 250px;
+                right: -250px;
+                transition: 0.4s;
+                li{
+                    padding:15px;
+                    padding-left:30px;
+                }
+            }
         }
+
+        .selected-menu {
+            .submenu {
+                right: 0;
+                transition: 0.4s;
+            }
+        }
+
+        .submenu {
+            &>li {
+                background-image: none !important;
+                padding: 15px;
+            }
+        }
+
 
         &.active {
             right: 0;
-            &.slider{
-                .selected-menu {
-                    .submenu {
-                        right: 0;
-                    }
+
+            .selected-menu {
+                .submenu {
+                    right: 0;
                 }
-        
             }
-            }
+        }
     }
 }

@@ -1,10 +1,13 @@
 document.addEventListener("DOMContentLoaded", init());
+const bodyElement = document.querySelector("body");
 
 function init() {
+  const overlay = document.getElementById("overlay"); // should this go here?
   handleSubmenuLinks();
   handleSubmenuCloseButtons();
   handleMobileMenu();
 }
+// START Mobile Hamburger
 function handleMobileMenu() {
   const menuToggle = document.querySelector(".nav-toggle");
   const bars = document.querySelectorAll(".bar");
@@ -19,6 +22,8 @@ function handleMobileMenu() {
     mobileMenu.classList.toggle("active");
   });
 }
+// END Mobile Hamburger
+
 function handleClickOutsideOfMenu(event) {
   const selectedMenu = document.querySelector(".selected-menu");
 
@@ -32,6 +37,7 @@ function handleClickOutsideOfMenu(event) {
 
     // Remove the "selected-menu" class
     selectedMenu.classList.remove("selected-menu");
+    bodyElement.classList.remove("overlay-active");
     document.removeEventListener("click", handleClickOutsideOfMenu);
   }
   event.stopPropagation();
@@ -45,14 +51,17 @@ function toggleSubmenu() {
   const allMenuSelectedElements = document.querySelectorAll(".selected-menu");
   allMenuSelectedElements.forEach(function (menuSelectedElement) {
     menuSelectedElement.classList.remove("selected-menu");
+    bodyElement.classList.remove("overlay-active");
   });
 
   // if it was already toggled on hide it, otherwise show it
   if (isSelected) {
     this.parentElement.classList.remove("selected-menu");
+    bodyElement.classList.remove("overlay-active");
     document.removeEventListener("click", handleClickOutsideOfMenu);
   } else {
     this.parentElement.classList.add("selected-menu");
+    bodyElement.classList.add("overlay-active");
     document.addEventListener("click", handleClickOutsideOfMenu);
   }
 }
@@ -77,6 +86,7 @@ function handleSubmenuCloseButtons() {
       const parentListItem = link.closest(".has-submenu");
       if (parentListItem) {
         parentListItem.classList.remove("selected-menu");
+        bodyElement.classList.remove("overlay-active");
       }
     });
   });
