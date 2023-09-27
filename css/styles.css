@@ -20,7 +20,7 @@
 .logo img {
   width: 100%;
   height: auto;
-  max-width: 150px;
+  max-width: 100px;
 }
 
 ul {
@@ -66,6 +66,15 @@ body.overlay-active .overlay {
 
   .logo img {
     margin: 10px;
+  }
+
+  .close-submenu a span {
+    color: #9e0010;
+  }
+  .close-submenu a span .back-arrow {
+    font-size: 25px;
+    padding-left: 5px;
+    font-weight: bold;
   }
 
   .nav-toggle {
@@ -117,7 +126,7 @@ body.overlay-active .overlay {
     height: 100%;
     background-color: var(--menu-bg-color);
     overflow-y: auto;
-    transition: 0.4s;
+    transition: right 0.5s;
     padding-top: 25px;
     z-index: 1000;
   }
@@ -127,6 +136,28 @@ body.overlay-active .overlay {
   }
   .primary-menu ul li {
     padding: 15px;
+  }
+  .primary-menu ul .divider {
+    height: 0px;
+    border-top: thin #ccc solid;
+  }
+  .primary-menu ul .support-tab {
+    display: flex;
+    flex-flow: nowrap column;
+    font-weight: bold;
+    white-space: nowrap;
+  }
+  .primary-menu ul .support-tab a {
+    font-weight: 300;
+    color: black;
+    padding: 0;
+    padding: 15px;
+  }
+  .primary-menu ul .support-tab span {
+    padding-left: 15px;
+  }
+  .primary-menu ul .support-tab .breakline {
+    display: none;
   }
   .primary-menu a,
 .primary-menu .non-link {
@@ -151,16 +182,41 @@ body.overlay-active .overlay {
     bottom: 0;
     width: 250px;
     right: -250px;
-    transition: 0.4s;
+    transition: right 0.5s;
   }
   .primary-menu .has-submenu > .submenu li {
     padding: 15px;
+  }
+  .primary-menu .has-sub-submenu > a:after {
+    content: "›";
+    color: var(--primary-color);
+    font-size: 25px;
+    padding-left: 5px;
+    font-weight: bold;
+  }
+  .primary-menu .has-sub-submenu > .sub-submenu {
+    display: none;
+    position: absolute;
+    background-color: var(--menu-bg-color);
+    top: 0;
+    bottom: 0;
+    width: 250px;
+    right: -250px;
+    transition: right 0.5s;
+  }
+  .primary-menu .has-sub-submenu > .sub-submenu li {
+    padding: 15px;
     padding-left: 30px;
+  }
+  .primary-menu .has-sub-submenu.selected-submenu > .sub-submenu {
+    display: block;
+    right: 0;
+    transition: right 0.5s;
   }
   .primary-menu .selected-menu > .submenu {
     display: block;
     right: 0;
-    transition: 0.4s;
+    transition: right 0.5s;
   }
   .primary-menu .submenu > li {
     background-image: none !important;
@@ -168,9 +224,11 @@ body.overlay-active .overlay {
   }
   .primary-menu.active {
     right: 0;
+    transition: right 0.5s;
   }
   .primary-menu.active .selected-menu .submenu {
     right: 0;
+    transition: right 0.5s;
   }
 }
 @media screen and (min-width: 800px) {
@@ -194,6 +252,9 @@ body.overlay-active .overlay {
     padding: 0 10px;
     font-family: var(--menu-font);
   }
+  .header .primary-menu {
+    flex-basis: 100%;
+  }
   .header .primary-menu > ul {
     list-style-type: none;
     display: flex;
@@ -203,10 +264,13 @@ body.overlay-active .overlay {
     background-color: #fff;
     border: none;
     font-family: var(--menu-font);
-    font-size: 13px;
+    font-size: 15px;
+    font-weight: bold;
     place-items: center;
     display: grid;
     padding: 0 5px;
+    white-space: nowrap;
+    align-items: center;
   }
   .header .primary-menu > ul > li:hover, .header .primary-menu > ul > li:active, .header .primary-menu > ul > li.selected-menu {
     background-color: rgb(31, 72, 106);
@@ -270,16 +334,16 @@ body.overlay-active .overlay {
   .header .primary-menu > ul > li.selected-menu .submenu.large-lists a {
     display: block;
   }
-  .header .primary-menu > ul > li.selected-menu .submenu.large-lists .sub-submenu {
+  .header .primary-menu > ul > li.selected-menu .submenu.large-lists > li {
     flex: 1;
   }
-  .header .primary-menu > ul > li.selected-menu .submenu.large-lists .sub-submenu:last-child {
+  .header .primary-menu > ul > li.selected-menu .submenu.large-lists > li:last-child {
     border-left: thin #ddd solid;
   }
-  .header .primary-menu > ul > li.selected-menu .submenu.large-lists .sub-submenu > a {
+  .header .primary-menu > ul > li.selected-menu .submenu.large-lists > li > a {
     font-size: 1.25rem;
   }
-  .header .primary-menu > ul > li.selected-menu .submenu.large-lists .sub-submenu .column {
+  .header .primary-menu > ul > li.selected-menu .submenu.large-lists > li .column {
     columns: 2;
   }
   .header .primary-menu > ul > li.selected-menu .submenu .close-submenu {
@@ -299,9 +363,39 @@ body.overlay-active .overlay {
     padding: 10px 1vw;
     color: var(--primary-color);
     text-decoration: none;
+    white-space: nowrap;
   }
   .header .primary-menu > ul > li .non-link {
     padding: 10px 1vw;
     width: 100%;
+  }
+  .header .primary-menu > ul .divider {
+    flex-basis: 100%;
+  }
+  .header .primary-menu > ul .divider:hover {
+    background-color: transparent;
+  }
+  .header .primary-menu > ul .support-tab {
+    display: flex;
+    flex-flow: nowrap row;
+    font-weight: bold;
+    white-space: nowrap;
+  }
+  .header .primary-menu > ul .support-tab:hover {
+    background-color: transparent;
+  }
+  .header .primary-menu > ul .support-tab:hover a {
+    color: black;
+  }
+  .header .primary-menu > ul .support-tab a {
+    font-weight: 300;
+    color: black;
+    padding: 0;
+  }
+  .header .primary-menu > ul .support-tab .breakline {
+    color: #ccc;
+    font-weight: 300;
+    padding: 0 10px;
+    font-size: 20px;
   }
 }

@@ -102,7 +102,7 @@ function handleSubmenuCloseButtons() {
 
 function handleExtendedMenus() {
   // START Expand button behavior
-  const subMenuHasMenuLinks = document.querySelectorAll(".has-submenu .sub-submenu a");
+  const subMenuHasMenuLinks = document.querySelectorAll(".has-sub-submenu>a");
   subMenuHasMenuLinks.forEach(function (link) {
     link.addEventListener("click", function (event) {
       // Prevent the default behavior of the anchor tag
@@ -122,8 +122,7 @@ function handleExtendedMenus() {
     link.addEventListener("click", function (event) {
       // Prevent the default behavior of the anchor tag
       event.preventDefault();
-
-      const parentListItem = link.closest(".sub-submenu");
+      const parentListItem = link.closest(".has-sub-submenu");
       if (parentListItem) {
         parentListItem.classList.remove("selected-submenu");
       }

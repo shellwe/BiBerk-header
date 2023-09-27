@@ -1,11 +1,12 @@
 @media screen and (min-width: 800px) {
-    .display-mobile-only{
-        display:none;
+    .display-mobile-only {
+        display: none;
     }
-    .display-desktop-only{
-        display:block;
+
+    .display-desktop-only {
+        display: block;
     }
-    
+
     .nav-toggle {
         display: none;
     }
@@ -19,6 +20,7 @@
         font-family: var(--menu-font);
 
         .primary-menu {
+            flex-basis: 100%;
 
             // Top Menu
             &>ul {
@@ -34,10 +36,13 @@
                     background-color: #fff;
                     border: none;
                     font-family: var(--menu-font);
-                    font-size: 13px;
+                    font-size: 15px;
+                    font-weight: bold;
                     place-items: center;
                     display: grid;
                     padding: 0 5px;
+                    white-space: nowrap;
+                    align-items: center;
 
                     &:hover,
                     &:active,
@@ -48,9 +53,11 @@
                             color: #fff;
                         }
                     }
-                    .submenu{
-                        display:none;
+
+                    .submenu {
+                        display: none;
                     }
+
                     &.selected-menu {
 
                         // submenu layer 1
@@ -122,11 +129,13 @@
 
 
 
-                                .sub-submenu {
+                                &>li {
                                     flex: 1;
-                                    &:last-child{
+
+                                    &:last-child {
                                         border-left: thin #ddd solid;
                                     }
+
                                     &>a {
                                         font-size: 1.25rem;
                                     }
@@ -140,7 +149,7 @@
 
                             .close-submenu {
                                 position: absolute;
-                                right:0;
+                                right: 0;
                                 top: 10px;
 
                                 a {
@@ -148,6 +157,7 @@
                                     width: 100px;
                                 }
                             }
+
                             // .close-submenu {
                             //     flex-basis: 100%;
                             //     display: flex;
@@ -167,16 +177,49 @@
                         align-items: center;
                         width: 100%;
                         padding: 10px 1vw;
-                        color: var(--primary-color);                        ;
+                        color: var(--primary-color);
+                        ;
                         text-decoration: none;
+                        white-space: nowrap;
 
                     }
-                    .non-link{
+
+                    .non-link {
                         padding: 10px 1vw;
                         width: 100%;
                     }
                 }
 
+                .divider {
+                    flex-basis: 100%;
+                    &:hover{
+                        background-color: transparent;
+                    }
+            }
+
+                .support-tab {
+                    display: flex;
+                    flex-flow: nowrap row;
+                    font-weight: bold;
+                    white-space: nowrap;
+                    &:hover{
+                        background-color: transparent;
+                        a {
+                            color: black;
+                        }
+                    }
+                    a {
+                        font-weight: 300;
+                        color: black;
+                        padding:0;
+                        }
+                    .breakline {
+                        color: #ccc;
+                        font-weight: 300;
+                        padding: 0 10px;
+                        font-size:20px;
+                        }
+                }
                 // Submenu
                 // .submenu{
                 //     //display:none;

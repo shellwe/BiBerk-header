@@ -13,6 +13,20 @@
         }
     }
 
+    .close-submenu {
+        a {
+            span{
+            color: #9e0010;
+
+            .back-arrow {
+                font-size: 25px;
+                padding-left: 5px;
+                font-weight: bold;
+            }
+        }
+        }
+    }
+
     // START Hamburger Menu
     .nav-toggle {
         position: absolute;
@@ -71,17 +85,42 @@
         height: 100%;
         background-color: var(--menu-bg-color);
         overflow-y: auto;
-        transition: 0.4s;
+        transition: right 0.5s;
         padding-top: 25px;
         z-index: 1000;
 
         ul {
             list-style: none;
             padding: 0;
+
             li {
                 padding: 15px;
             }
+            .divider {
+                height:0px;
+                border-top: thin #ccc solid;
             }
+
+            .support-tab {
+                display: flex;
+                flex-flow: nowrap column;
+                font-weight: bold;
+                white-space: nowrap;
+                a {
+                    font-weight: 300;
+                    color: black;
+                    padding:0;
+                    padding: 15px;
+                }
+                span{
+                    padding-left:15px;
+                }
+                .breakline {
+                    display:none;
+                }
+            }
+
+        }
 
 
         a,
@@ -90,8 +129,9 @@
             color: var(--primary-color);
             display: block;
             font-size: 18px;
-            padding-left:15px;
+            padding-left: 15px;
         }
+
         .has-submenu {
             &>a {
                 &:after {
@@ -102,6 +142,7 @@
                     font-weight: bold;
                 }
             }
+
             &>.submenu {
                 display: none;
                 position: absolute;
@@ -110,20 +151,64 @@
                 bottom: 0;
                 width: 250px;
                 right: -250px;
-                transition: 0.4s;
-                li{
-                    padding:15px;
-                    padding-left:30px;
+                transition: right 0.5s;
+                //transition-delay: 250ms;
+
+
+                li {
+                    padding: 15px;
                 }
             }
         }
 
+        // I hate that I am duplicating this
+        .has-sub-submenu {
+            &>a {
+                &:after {
+                    content: "\203A";
+                    color: var(--primary-color);
+                    font-size: 25px;
+                    padding-left: 5px;
+                    font-weight: bold;
+                }
+            }
+
+            &>.sub-submenu {
+                display: none;
+                position: absolute;
+                background-color: var(--menu-bg-color);
+                top: 0;
+                bottom: 0;
+                width: 250px;
+                right: -250px;
+                transition: right 0.5s;
+                //transition-delay: 250ms;
+
+                li {
+                    padding: 15px;
+                    padding-left: 30px;
+                }
+            }
+
+            &.selected-submenu {
+
+                &>.sub-submenu {
+                    display: block;
+                    right: 0;
+                    transition: right 0.5s;
+                    //transition-delay: 250ms;
+                }
+            }
+        }
+
+
         .selected-menu {
             &>.submenu {
-                display:block;
+                display: block;
                 right: 0;
-                transition: 0.4s;
-                
+                transition: right 0.5s;
+                //transition-delay: 250ms;
+
             }
         }
 
@@ -137,10 +222,12 @@
 
         &.active {
             right: 0;
+            transition: right 0.5s;
 
             .selected-menu {
                 .submenu {
                     right: 0;
+                    transition: right 0.5s;
                 }
             }
         }
