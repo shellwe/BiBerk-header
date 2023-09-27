@@ -102,8 +102,8 @@
                     font-weight: bold;
                 }
             }
-            .submenu {
-                display: block;
+            &>.submenu {
+                display: none;
                 position: absolute;
                 background-color: var(--menu-bg-color);
                 top: 50px;
@@ -119,9 +119,11 @@
         }
 
         .selected-menu {
-            .submenu {
+            &>.submenu {
+                display:block;
                 right: 0;
                 transition: 0.4s;
+                
             }
         }
 

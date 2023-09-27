@@ -69,9 +69,9 @@
                             border-radius: 5px;
                             padding: 30px 25px;
 
-                            &>li {
-                                display: block;
-                            }
+                            // &>li {
+                            //     display: block;
+                            // }
 
                             &.image-panels {
                                 display: flex;
@@ -122,7 +122,7 @@
 
 
 
-                                .submenu-category {
+                                .sub-submenu {
                                     flex: 1;
                                     &:last-child{
                                         border-left: thin #ddd solid;

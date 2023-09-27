@@ -1,10 +1,11 @@
 document.addEventListener("DOMContentLoaded", init());
 const bodyElement = document.querySelector("body");
-
+let mobileOverlay = false;
 function init() {
   const overlay = document.getElementById("overlay"); // should this go here?
   handleSubmenuLinks();
   handleSubmenuCloseButtons();
+  handleExtendedMenus();
   handleMobileMenu();
 }
 // START Mobile Hamburger
@@ -20,6 +21,8 @@ function handleMobileMenu() {
 
   menuToggle.addEventListener("click", function () {
     mobileMenu.classList.toggle("active");
+    mobileOverlay = !mobileOverlay;
+    bodyElement.classList.toggle("overlay-active");
   });
 }
 // END Mobile Hamburger
@@ -37,6 +40,7 @@ function handleClickOutsideOfMenu(event) {
 
     // Remove the "selected-menu" class
     selectedMenu.classList.remove("selected-menu");
+    if (!mobileOverlay)
     bodyElement.classList.remove("overlay-active");
     document.removeEventListener("click", handleClickOutsideOfMenu);
   }
@@ -51,16 +55,19 @@ function toggleSubmenu() {
   const allMenuSelectedElements = document.querySelectorAll(".selected-menu");
   allMenuSelectedElements.forEach(function (menuSelectedElement) {
     menuSelectedElement.classList.remove("selected-menu");
+    if (!mobileOverlay)
     bodyElement.classList.remove("overlay-active");
   });
 
   // if it was already toggled on hide it, otherwise show it
   if (isSelected) {
     this.parentElement.classList.remove("selected-menu");
+    if (!mobileOverlay)
     bodyElement.classList.remove("overlay-active");
     document.removeEventListener("click", handleClickOutsideOfMenu);
   } else {
     this.parentElement.classList.add("selected-menu");
+    if (!mobileOverlay)
     bodyElement.classList.add("overlay-active");
     document.addEventListener("click", handleClickOutsideOfMenu);
   }
@@ -70,24 +77,57 @@ function handleSubmenuLinks() {
 
   hasSubmenuLinks.forEach((link) => {
     link.addEventListener("click", function (event) {
-      // prevents hyperlink from going anywhere
+      // Prevent the default behavior of the anchor tag
       event.preventDefault();
       toggleSubmenu.bind(this)();
     });
   });
 }
 function handleSubmenuCloseButtons() {
-  const closeSubMenuLinks = document.querySelectorAll(".close-submenu a");
+  const closeSubMenuLinks = document.querySelectorAll(".submenu>.close-submenu a");
   closeSubMenuLinks.forEach(function (link) {
-    link.addEventListener("click", function (e) {
+    link.addEventListener("click", function (event) {
       // Prevent the default behavior of the anchor tag
-      e.preventDefault();
+      event.preventDefault();
 
       const parentListItem = link.closest(".has-submenu");
       if (parentListItem) {
         parentListItem.classList.remove("selected-menu");
+        if (!mobileOverlay)
         bodyElement.classList.remove("overlay-active");
       }
     });
   });
+}
+
+function handleExtendedMenus() {
+  // START Expand button behavior
+  const subMenuHasMenuLinks = document.querySelectorAll(".has-submenu .sub-submenu a");
+  subMenuHasMenuLinks.forEach(function (link) {
+    link.addEventListener("click", function (event) {
+      // Prevent the default behavior of the anchor tag
+      event.preventDefault();
+
+      this.parentElement.classList.add("selected-submenu");
+    });
+  });
+
+  
+
+  // END Expand button behavior
+
+  // START close button behavior
+  const closeSubMenuLinks = document.querySelectorAll(".sub-submenu .close-submenu a");
+  closeSubMenuLinks.forEach(function (link) {
+    link.addEventListener("click", function (event) {
+      // Prevent the default behavior of the anchor tag
+      event.preventDefault();
+
+      const parentListItem = link.closest(".sub-submenu");
+      if (parentListItem) {
+        parentListItem.classList.remove("selected-submenu");
+      }
+    });
+  });
+  // END close button behavior
 }

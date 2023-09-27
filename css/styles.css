@@ -143,8 +143,8 @@ body.overlay-active .overlay {
     padding-left: 5px;
     font-weight: bold;
   }
-  .primary-menu .has-submenu .submenu {
-    display: block;
+  .primary-menu .has-submenu > .submenu {
+    display: none;
     position: absolute;
     background-color: var(--menu-bg-color);
     top: 50px;
@@ -153,11 +153,12 @@ body.overlay-active .overlay {
     right: -250px;
     transition: 0.4s;
   }
-  .primary-menu .has-submenu .submenu li {
+  .primary-menu .has-submenu > .submenu li {
     padding: 15px;
     padding-left: 30px;
   }
-  .primary-menu .selected-menu .submenu {
+  .primary-menu .selected-menu > .submenu {
+    display: block;
     right: 0;
     transition: 0.4s;
   }
@@ -231,9 +232,6 @@ body.overlay-active .overlay {
     border-radius: 5px;
     padding: 30px 25px;
   }
-  .header .primary-menu > ul > li.selected-menu .submenu > li {
-    display: block;
-  }
   .header .primary-menu > ul > li.selected-menu .submenu.image-panels {
     display: flex;
     flex-flow: row wrap;
@@ -272,16 +270,16 @@ body.overlay-active .overlay {
   .header .primary-menu > ul > li.selected-menu .submenu.large-lists a {
     display: block;
   }
-  .header .primary-menu > ul > li.selected-menu .submenu.large-lists .submenu-category {
+  .header .primary-menu > ul > li.selected-menu .submenu.large-lists .sub-submenu {
     flex: 1;
   }
-  .header .primary-menu > ul > li.selected-menu .submenu.large-lists .submenu-category:last-child {
+  .header .primary-menu > ul > li.selected-menu .submenu.large-lists .sub-submenu:last-child {
     border-left: thin #ddd solid;
   }
-  .header .primary-menu > ul > li.selected-menu .submenu.large-lists .submenu-category > a {
+  .header .primary-menu > ul > li.selected-menu .submenu.large-lists .sub-submenu > a {
     font-size: 1.25rem;
   }
-  .header .primary-menu > ul > li.selected-menu .submenu.large-lists .submenu-category .column {
+  .header .primary-menu > ul > li.selected-menu .submenu.large-lists .sub-submenu .column {
     columns: 2;
   }
   .header .primary-menu > ul > li.selected-menu .submenu .close-submenu {
